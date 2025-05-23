@@ -2,8 +2,10 @@
     margin: 0;
     padding: 0;
 }
-nav{
-    position: absolute;
+
+
+html {
+  scroll-padding-top: 60px; /* o lo que mida tu nav */
 }
 
 .section-inicio{
@@ -93,4 +95,19 @@ body.dark-mode footer a:hover {
 /* Botón de modo */
 #modoOscuroBtn {
   transition: all 0.3s;
+}
+
+
+.barra-container {
+  background-color: #e0e0e0;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.barra {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s;
 }

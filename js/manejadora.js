@@ -580,29 +580,42 @@ function obtenerPromedioPorMarca() {
   ];
 
   // Para cada marca, filtramos los productos y calculamos el promedio
-  marcasUnicas.forEach((nombreMarca) => {
-    const pinturasFiltradas = filtrarGeneral(nombreMarca);
-    const precios = pinturasFiltradas
-      .map((p) => Number(p.precio))
-      .filter((precio) => !isNaN(precio) && precio > 0);
+const promediosPorMarca = marcasUnicas.map((nombreMarca) => {
+  const pinturasFiltradas = filtrarGeneral(nombreMarca);
+  const precios = pinturasFiltradas
+    .map((p) => Number(p.precio))
+    .filter((precio) => !isNaN(precio) && precio > 0);
 
-    if (precios.length > 0) {
-      const promedio =
-        precios.reduce((acc, val) => acc + val, 0) / precios.length;
+  if (precios.length > 0) {
+    const promedio =
+      precios.reduce((acc, val) => acc + val, 0) / precios.length;
+    return { nombreMarca, promedio };
+  }
+  return null;
+}).filter(Boolean);
 
-      // Creamos el elemento de la lista
-      const li = document.createElement("li");
-      li.className =
-        "list-group-item d-flex justify-content-between align-items-center";
+const maxPromedio = Math.max(...promediosPorMarca.map(p => p.promedio));
 
-      li.innerHTML = `
-  <span class="text-capitalize">${nombreMarca}</span>
-  <span class="badge bg-primary rounded-pill">$${promedio.toFixed(2)}</span>
-`;
-      li.textContent = `${nombreMarca}: $${Math.floor(promedio)}`;
-      panelPromedios.appendChild(li);
-    }
-  });
+// Paso 2: renderizar lista con barras
+promediosPorMarca.forEach(({ nombreMarca, promedio }) => {
+  const li = document.createElement("li");
+  li.className =
+    "list-group-item d-flex flex-column";
+
+  const porcentaje = (promedio / maxPromedio) * 100;
+
+  li.innerHTML = `
+    <div class="d-flex justify-content-between">
+      <span class="text-capitalize">${nombreMarca}</span>
+      <span class="badge bg-primary rounded-pill">$${promedio.toFixed(2)}</span>
+    </div>
+    <div class="barra-container">
+      <div class="barra" style="width: ${porcentaje}%;"></div>
+    </div>
+  `;
+
+  panelPromedios.appendChild(li);
+});
 }
 // Ordena el array de pinturas por precio en orden ascendente o descendente según el parámetro 'orden' (por defecto "asc"),
 // filtrando solo pinturas con precios válidos, y luego muestra los datos ordenados en la tabla.

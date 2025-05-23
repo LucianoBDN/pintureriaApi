@@ -25,7 +25,7 @@ Esta aplicación web permite administrar un inventario de pinturas, con funciona
 
 ### Análisis y Exportación
 - **Estadísticas**: Muestra total de pinturas, marca más frecuente, pintura más cara, y promedios generales y por marca (al clickear se actualiza en tiempo real y carga los nuevos elementos para recalcular las estadisticas)
-![Img muestra listado](./img/estadisticas.png)
+![Img muestra listado](./img/actEstadisticas.png)
 
 
 - **Exportar CSV**: Exporta la lista actual de pinturas a un archivo CSV descargable
