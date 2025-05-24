@@ -20,7 +20,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
     <div class="container-fluid">
         <img src="./img/utnLogo.png" alt="" class="mx-2" width="20px">
-        <a class="navbar-brand" target="_blank" href="https://github.com/LucianoBDN">Luciano Bordon</a>
+        <a class="navbar-brand" target="_blank" href="https://github.com/LucianoBDN/pintureriaApi">Luciano Bordon</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,6 +30,9 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#inicio">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#acordeonEstadisticas">Estadisticas</a>
                 </li>
                 <li class="nav-item">
                     <a id="listado" class="nav-link" href="#acordeonLista">Listado</a>
@@ -42,7 +45,7 @@
                 </li>
             </ul>
 
-            <!-- Botones a la derecha dentro del collapse -->
+            
             <div class="d-flex flex-column flex-lg-row gap-2">
                 <button class="btn btn-outline-dark" id="modoOscuroBtn">Modo Oscuro</button>
                 <button class="btn btn-outline-primary" id="exportarCSVBtn">Exportar CSV</button>
@@ -110,6 +113,7 @@
 
                         <div class="row justify-content-center mt-4">
                             <div class="col-md-5">
+                                <div id="contenedorAlerta" class="mt-3"></div>
                                 <form id="frmFormulario" class="bg-light p-4 rounded shadow-sm needs-validation"
                                     novalidate>
 
@@ -155,7 +159,7 @@
                                                 class="btn btn-outline-secondary w-100">Limpiar</button>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-3">
-                                            <button type="button" id="btnModificar"
+                                            <button type="submit" id="btnModificar"
                                                 class="btn btn-warning w-100">Modificar</button>
                                         </div>
                                     </div>
@@ -215,7 +219,7 @@
                                                     data-bs-parent="#acordeonPromedioMarca">
                                                     <div class="accordion-body pt-2 pb-0 px-3">
                                                         <ul class="list-group list-group-flush" id="promedioPorMarca">
-                                                            <!-- Elementos por marca se insertan con JS -->
+                                                            
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -238,7 +242,7 @@
                             <div id="collapseLista" class="accordion-collapse collapse" aria-labelledby="headingLista"
                                 data-bs-parent="#acordeonLista">
                                 <div class="accordion-body">
-                                    <!-- Controles de filtro y ordenamiento -->
+                                    
                                     <div class="row mb-3">
                                         <div class="col-md-8">
                                             <div class="input-group">
@@ -261,11 +265,11 @@
                                         </div>
                                     </div>
 
-                                    <!-- Lista de pinturas -->
+                                    
                                     <div id="divListado" class="col-12 p-4 mx-auto">
                                         <div class="border rounded bg-light shadow-sm p-3" style="min-height: 300px;">
                                             <ul id="listaPinturas" class="list-group">
-                                                <!-- Pinturas se insertarán aquí -->
+                                                
                                             </ul>
                                         </div>
                                     </div>

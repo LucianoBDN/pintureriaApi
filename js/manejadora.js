@@ -44,7 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("frmFormulario")
     .addEventListener("submit", agregarPintura);
 
-  modificarBoton.addEventListener("click", modificarPintura);
+  
+
+
 
   filtrarBtn.addEventListener("click", filtrar);
   btnEstadisticas.addEventListener("click", totalPinturas);
@@ -196,6 +198,34 @@ async function cargarPinturas() {
   return [];
 }
 
+function mostrarAlertaBootstrap(mensaje, tipo = "success", duracion = 3000) {
+  const contenedor = document.getElementById("contenedorAlerta");
+
+  // Crear un div y configurarlo
+  const alerta = document.createElement("div");
+  alerta.className = `alert alert-${tipo} alert-dismissible fade show`;
+  alerta.role = "alert";
+  alerta.innerHTML = `
+    ${mensaje}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  `;
+
+  // Agregar la alerta al contenedor
+  contenedor.innerHTML = ""; // Limpiamos alertas anteriores
+  contenedor.appendChild(alerta);
+
+  // Desaparecer la alerta luego de cierto tiempo
+  setTimeout(() => {
+    alerta.classList.remove("show"); // Oculta con animación
+    alerta.classList.add("hide");
+    // Quitarla del DOM después de la animación (500ms es el tiempo del fade de Bootstrap)
+    setTimeout(() => {
+      alerta.remove();
+    }, 500);
+  }, duracion);
+}
+
+
 // Función que agrega una nueva pintura usando la API
 // - Previene el comportamiento por defecto del formulario.
 // - Valida el formulario; si no es válido, detiene la ejecución.
@@ -223,6 +253,8 @@ async function agregarPintura(e) {
     if (respuesta.ok) {
       mostrarPinturas();
       limpiarForm();
+      mostrarAlertaBootstrap("Pintura agregada correctamente.", "success");
+  
     } else {
       alert("Error nashe");
     }
@@ -351,6 +383,8 @@ async function seleccionarPintura(id) {
 
     const form = document.getElementById("frmFormulario");
     form.removeEventListener("submit", agregarPintura);
+    form.addEventListener("submit", modificarPintura)
+    mostrarAlertaBootstrap("Pintura seleccionada correctamente.", "success");
   } catch (error) {
     alert("Error al cargar el usuario");
     console.log(error);
@@ -386,6 +420,7 @@ async function modificarPintura(e) {
     if (respuesta.ok) {
       mostrarPinturas();
       limpiarForm();
+      mostrarAlertaBootstrap("Pintura modificada correctamente.", "success");
       const form = document.getElementById("frmFormulario");
       form.addEventListener("submit", agregarPintura);
     } else {
